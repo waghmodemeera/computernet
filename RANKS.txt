@@ -1,0 +1,87 @@
+SELECT * FROM RESULTS
+---------------------RANK-------------------------
+
+Pseudo Columns- These are the virtual columns which will be applied on table externally.
+--------------------------------------------------------
+
+Select RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS;
+Select TOTAL_PERCENTAGE, RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS;
+Select RESULTS .*,rank ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS;
+
+----------------------limitation---------------------------------------------------------------------
+Mostly Rank queries are not flexible as these queries consider duplicate records also- 
+It is a drawback of rank query.
+
+--------------------------------------------------------
+Note- In ranks-we must use order by clause
+
+---------------------DENSE RANK-------------------------
+Select DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS;
+Select TOTAL_PERCENTAGE, DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS;
+Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS;
+--------------------------------------------------------
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank = 1;
+--------------------------------------------------------
+********************************************************************************************************
+Q. INTERVIEW QUESTIONS
+FIND THE MAX SALARY/ MAX_PERCENTAGE OF THE DATA?
+----
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank = 1;
+--------------------------------------------------------
+Q. INTERVIEW QUESTIONS
+FIND SECOND MAX SALARY/ SECOND MAX_PERCENTAGE OF THE DATA?
+----
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank = 2;
+--------------------------------------------------------
+Q. INTERVIEW QUESTIONS
+FIND 10TH MAX SALARY/ 10TH MAX_PERCENTAGE OF THE DATA?
+FIND 15TH MAX SALARY/ 15TH MAX_PERCENTAGE OF THE DATA?
+----
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank = 10;
+
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank = 15;
+--------------------------------------------------------
+Q. INTERVIEW QUESTIONS
+FIND TOP 5 MAX SALARY/ TOP 5 MAX_PERCENTAGE OF THE DATA?
+-----
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank <= 5;
+--------------------------------------------------------
+Q. INTERVIEW QUESTIONS
+FIND 6TH TO 10TH  MAX SALARY/ TOP 6TH TO 10TH  MAX_PERCENTAGE OF THE DATA?
+-----
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank BETWEEN 6 AND 10;
+--------------------------------------------------------
+Q. INTERVIEW QUESTIONS
+FIND 6TH HIGHEST, 10TH HIGHEST, 15TH HIGHEST SALARY/6TH HIGHEST, 10TH HIGHEST, 15TH HIGHEST MAX_PERCENTAGE OF THE DATA?
+-----
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank IN (6,10,15);
+--------------------------------------------------------
+Q. INTERVIEW QUESTIONS
+FIND MAX SALARIES OTHER THAN-  6TH HIGHEST, 10TH HIGHEST, 15TH HIGHEST SALARY/
+HIGHEST MAX_PERCENTAGE OTHER THAN 6TH HIGHEST, 10TH HIGHEST, 15TH HIGHEST  OF THE DATA?
+-----
+Select * from 
+(Select RESULTS .*,DENSE_RANK ( ) over (order by TOTAL_PERCENTAGE desc) as Rank from RESULTS )
+Where Rank NOT IN (6,10,15);
+--------------------------------------------------------
+*******************************************************************************************
+Note- In RANK AND DENSE RANKS-we must use order by clause
+--------------------------------------------------------
+Note- For Minimum salaries-------Use ascending function only at the place of desc
+*******************************************************************************************
