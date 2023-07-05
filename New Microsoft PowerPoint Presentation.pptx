@@ -1,0 +1,14 @@
+class employee:
+def computer_function(self):
+  self.name=name
+  self.age=age
+  self.sal=sal
+  self.experience=experience
+def get_num(self):
+  print('name:',self.name)
+  print('age:',self.age)
+  print('sal:',self.sal)
+  print('experience:',self.experience)
+
+result=employee()
+result.get_num()
