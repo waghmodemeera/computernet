@@ -1,0 +1,1061 @@
+--CLASS - 1
+--SQL - Structure Query Language
+--PL/SQL - Programming language / Structure Query language
+
+--Data
+--Collection of meaningful information
+
+--Database
+--It is collection of data in any file format where we able to store data.
+--for ex: excel,word,textfile etc.
+
+--Disadvantages of database
+--1.It stores less amount of data
+--2.data extraction process is very slow 
+--3.no relationship between two file formats 
+
+--RDBMS(Database) - Relational Database Management System
+--It is collection of table related information
+--It stores huge amount of data, whatever the data we are going to store in RDBMS, to extract that data we have simple language called SQL.
+--Their is relationship between two or more tables.
+
+--table
+--it is collection of rows and columns 
+
+--Diffrent flavours 
+--1.SQL Server 
+--2.SQL developer 
+--3.MySql
+--4.Teradata
+--5.Postgres SQL 
+--6.TOAD 
+--7.DB2 etc 
+
+--Two types of databases
+--1.System Defined Database
+--2.User Defined Database (Database Snapshots)
+
+--Four System defined databses
+--1.master - By default DB of SQL Server
+--2.model
+--3.msdb
+--4.tempdb
+
+--SQL is not case sensitive Language
+--For ex: menaing of DELHI is same as delhi
+
+--Create database
+--synatx: create database User_Defined_DB_Name
+CREATE DATABASE JOBHUNT;
+
+--To execute SQL statements 
+--Use F5 key from keyboard
+--use Execute tab for top bar 
+
+--To navigate user defined database we can use below syantax
+--synatx: USE User_Defined_DB_Name
+
+USE JOBHUNT
+
+--comments
+--Two types of comments
+--1.single line comment (--)
+--2.Multiple Line Comments (/* statements */)
+
+/* We have Started SQL
+and it will take around 20 to 25 sessions
+and we cover some of PL/SQL part as well */
+
+--Data Type
+--1.Numeric Data Type
+--2.String data type
+--3.Approximate data type
+--4.Date and time data type 
+
+--1.Numeric Data Type
+--1.Tinyint - 1 byte
+--It will store number ranging from 0 to 255.(128 64 32 16 8 4 2 1 = 255)
+
+declare @Student_ID tinyint
+SET @Student_ID = 255
+print(@Student_ID)
+
+--2.smallint - 2byte
+--It will store value ranging from -32768 to 32767.
+
+declare @ID smallint
+set @ID = 256
+print(@ID)
+
+--CLASS-2 
+--3.int - 4byte
+--It will store value ranging from numbers between -2,147,483,648 and 2,147,483,647.	
+declare @No int
+set @No = 2147483647
+print(@no)
+
+--int and integer both are same 
+
+--4.bigint	- 8byte
+--It will store value ranging from numbers between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.
+
+declare @No1 bigint
+set @No1 = 21474836478
+print(@no1)
+
+--5.DECIMAL(p, s)
+--An exact fixed point numnber.
+--Exact numerical, precision p, scale s.
+--A decimal number, that is a number that can have a decimal point in it. 
+--The size argument has two parts : precision and scale. 
+--The scale can not exceed the precision. 
+--Precision comes first, and a comma must separate from the scale argument.
+
+--234567.234
+
+Declare @deci decimal 
+set @deci =2345.67323456789
+print(@deci)
+
+--Floating Point Numbers 
+--1.float(p) - 4byte to  8byte
+--Approximate numerical, Precision is greater than or equal to 1 and 
+--the maximum precision depends on the DBMS.
+--It will store value ranging from number -1.79E + 308 to 1.79E + 308.
+
+declare @f1 float
+set @f1 = 1.234545678 --1.23455e+009
+print(@f1)
+
+declare @f2 float
+set @f2 = 922720368547758071234567891234567878 --9.22337e+018
+print(@f2)
+
+--2.real - 4 byte
+--Same as FLOAT type except that the DBMS defines the precision.
+--Floating precision number data from -3.40E + 38 to 3.40E + 38	
+
+declare @f3 real
+set @f3 = 1234545678 --1.23455e+009
+print(@f3)
+
+declare @f4 real
+set @f4 = 92233720368547758071234567891234567878 --9.22337e+018
+print(@f4)
+
+--3.String or character data type 
+--string data alaways enclosed in single quotes('') in sql. 
+--1.char
+--A-Z,a-z,0-9 and all the special charecters
+--Static memeory allocation and it can store 8000 characters.
+--Fixed width
+
+--Student_Name char(50) - Kiran - 5
+ declare @Student_Name char(50)
+ set @Student_Name = 'KIRAN'
+ print(@Student_Name)
+ print datalength((@Student_Name)) -- it defines datatype size 
+ print len((@Student_Name)) -- it will give string length
+
+--2.varchar
+--A-Z,a-z,0-9 and all the special charecters
+--Dynamic memeory allocation and it can store 8000 characters.
+
+
+--Student_Name char(50) - Kiran - 5
+ declare @Student_Name1 varchar(50)
+ set @Student_Name1 = 'KIRAN'
+ print(@Student_Name1)
+ print datalength((@Student_Name1)) -- it defines datatype size 
+ print len((@Student_Name1)) -- it will give string length
+
+ --A BC = 3 block
+ --ಕ ಡ =  2 blocks
+ --ನ್ನ= 2 blocks
+ --ಡ = 2 blocks 
+
+--3.nchar
+--A-Z,a-z,0-9 and all the special charecters
+--Static memeory allocation and it can store 4000 characters.
+--Fixed width
+
+declare @lan nchar(50)
+set @lan = 'ಕನ್ನಡ'
+print(@lan)
+print datalength((@lan))
+print len((@lan)) 
+
+--3.nvarchar
+--A-Z,a-z,0-9 and all the special charecters
+--Dynamic memeory allocation and it can store 4000 characters.
+
+
+declare @lan1 nvarchar(50)
+set @lan1 = 'K'
+print(@lan1)
+print datalength((@lan1))
+print len((@lan1)) 
+
+--4.date and time data type
+--getdate() - server current date and time
+SELECT GETDATE()
+
+--1.Date 
+--if we want to store only date in a cloumn or variable then we can use date data type.
+--format - 2023-04-16
+
+declare @current_date date 
+set @current_date = GETDATE()
+print (@current_date)
+
+--2.time 
+--if we want to store only time in a cloumn or variable then we can use time data type.
+--format - 09:43:16.383 (HH:MM:SS.MIS)
+
+declare @current_time time
+set @current_time = GETDATE() --09:44:20.6266667
+print (@current_time)
+
+--3.datetime 
+--if we want to store date as well as time in a cloumn or variable then we can use datetime data type.
+--format - Apr 16 2023  9:47AM
+
+declare @current_DT datetime 
+set @current_DT = '2023-04-18 10:48:13.033'
+print (@current_DT)
+
+--Create table 
+--synatx:
+--CREATE TABLE TBALE_NAME(Col1 data_type,col2 data_type.....coln dataType)
+
+--inf123
+--5678
+CREATE table employee(EMP_ID int,
+EMP_NAME varchar(50),
+CITY varchar(50),
+Salary int,
+DOJ datetime)
+
+--how to select table 
+--synatx:
+--SELECT * from Table_Name
+-- * - start will indicate all the columns from table
+
+select * from employee
+
+--suppose if we want only employee name and his salaray then 
+select EMP_NAME,salary from employee
+
+--How to insert data into table 
+--METHOD- I 
+--It will allow you to insert values into a table as per sequence defined while creating table.
+--we have to supply values as per table number of table columns. 
+--synatx:
+--INSERT INTO  TABLE_NAME values (clo1,col2,clo3...coln) -- if we have n number of columns in atable 
+
+INSERT INTO employee values (1,'Suresh','Latur',4500,'2022-04-01 10:00:00.000')
+
+
+INSERT INTO employee values (2,'Varun','Yavatmal',5500) --'2022-04-01 10:00:00.000'
+--above statement throgh an below exception
+--exception
+--Column name or number of supplied values does not match table definition.
+
+INSERT INTO employee values (2,'Varun','Yavatmal',5500,'2021-01-01 11:00:00') --'2022-04-01 10:00:00.000'
+
+select * from employee
+
+INSERT INTO employee values ('','','','','')
+
+--If we supply blank/empty value then it will store by default value for respective datatype 
+--int		- default value is zero(0)
+--varchar   - default value is blank
+--datetime  - default value is 1900-01-01 00:00:00.000
+
+--METHOD - II
+--It will allow you to insert values as per your choice but condition is that you have to follow your own defined sequence.
+
+--Synatx:
+--INSERT INTO TABLE_NAME (clo2,clo4,col1) values (clo2,clo4,col1)
+
+--NOTE: whatever the column we have not included in insertion syntax for those columns by default it will insert 'NULL' value.
+
+
+insert into employee (EMP_ID,EMP_NAME,DOJ) values (3,'Shital',GETDATE()-180)
+
+insert into employee (EMP_ID,EMP_NAME,DOJ) values (3,'Shital')
+--There are more columns in the INSERT statement than values specified in the VALUES clause. 
+--The number of values in the VALUES clause must match the number of columns specified in the INSERT statement.
+insert into employee (EMP_ID,EMP_NAME,DOJ) values (4,'Meena','')
+
+ 
+select * from employee
+--Multiple insert records 
+insert into employee values (5,'Mohan','Mumbai',5000,GETDATE()-180),
+(6,'Rohan','Nagpur',6000,GETDATE()-300)
+
+--CLASS-3 
+--SQL Clauses 
+--1.WHERE
+--2.ORDER BY
+--3.GROUP BY
+--4.Having
+
+--1.WHERE
+--WHERE Clause is used to filter data by providing condition
+--WHERE Clause is used for filtering purpose.
+--WHERE Clause is used along with SQL operator.
+
+--SQL OPerator 
+--Types
+--1.Comparision
+--2.Logical
+--3.Arithamatic
+--4.IN and NOT IN
+--5.Between and Not Between
+--6.LIKE 
+
+--1.Comparision
+--It is used to compare the condition provided into where clause 
+-- = - equal to
+-- > - greater than
+-- < - less than
+-- >= - greater than euql to
+-- <= - less than equal to
+-- <> or != - not equal to
+
+
+select * from employee where EMP_ID =5
+select * from employee where EMP_ID >2
+select * from employee where EMP_ID <4
+select * from employee where EMP_ID >=2
+select * from employee where EMP_ID <=4
+select * from employee where EMP_ID <>2
+select * from employee where EMP_ID != 2
+
+--2.Logical Operator 
+--It is used to compare two inputs logically based upon operation specified into where clause.
+--1.AND
+--2.OR
+--3.NOT
+
+--1.AND
+--If both the condition are TRUE then output is also TRUE 
+--If any of the condition fail or both the conditions are fail then ouput is FALSE.
+--It is type of multiplication operation.
+
+--AND oprtaion
+--input1		input2		output
+--TRUE			TRUE		TRUE
+--TRUE			FALSE		FALSE (NO OUTPUT or Balnk result)
+--FALSE			TRUE		FALSE
+--FALSE			FALSE		FALSE
+
+select * from employee where EMP_NAME = 'Gita' and CITY ='Latur'
+
+select * from employee where EMP_NAME = 'MOHAN' and CITY ='Mumbai'
+
+--2.OR
+--If both the condition are TRUE oe either of the condition is TRUE then output is also TRUE 
+--If both the conditions are fail then ouput is FALSE.
+--It is type of Addition operation.
+
+--AND oprtaion
+--input1		input2		output
+--TRUE			TRUE		TRUE
+--TRUE			FALSE		TRUE 
+--FALSE			TRUE		TRUE
+--FALSE			FALSE		FALSE (NO OUTPUT or Balnk result)
+
+select * from employee where EMP_NAME = 'Gita' OR CITY ='Latur'
+
+select * from employee where EMP_NAME = 'MOHAN' OR CITY ='Mumbai'
+
+select * from employee where EMP_NAME = 'SURESH' OR CITY ='Mumbai'
+
+--3.NOT
+--IT will perform negation
+--If provided condition is TRUE in output it will give FALSE
+--It will perform opposite opeartion.
+
+--NOT Oprtaion
+--INPUT		OUTPUT
+--TRUE		FALSE
+--FALSE		TRUE
+
+select * from employee where not EMP_ID =3
+
+select * from employee where not EMP_NAME ='Mohan'
+
+INSERT INTO employee values (7,'Shikhar','Wardha',6500,'2020-10-01 10:30:00'),
+(8,'Veena','Warangal',7500,GETDATE()-750)
+
+--Alias
+--By using alias in SQL we can specify user defined names to nay column.
+
+--synatx: 
+--1.
+--column_Name as userDefinedName
+--2.
+--column_Name  userDefinedName
+--3.
+-- userDefinedName = column_Name
+
+--3.arithmatic oprator 
+--It is used to perform arithamatic oprator.
+--we have multiple operator in SQL i.e +,-,*,/ and %
+
+select * from employee
+--salary increment
+select * ,EMP_INCREMENT_SAL = salary + 1000 from employee
+
+--perday salary
+select * ,PER_DAY_SAL = Salary/30 from employee
+
+--increse salary of each employee by 10% and add in its base salary
+select *,Salary_INC = salary + Salary*10/100,bonus = Salary *0.1 from employee
+--display even records
+select * from employee where EMP_ID %2 =0
+--display odd records 
+select * from employee where EMP_ID %2 =1
+--4.IN and NOT IN
+--IN :This operator allow you to navigate or point out values specified into the condition.
+
+--NOT IN : It will perform reverse operation or opposite operation of IN operator 
+
+
+select * from employee where EMP_ID in (1,5,7)
+
+select * from employee where CITY in ('Sanagli','Latur','Mumbai')
+
+--out of 1000 need to display only 201 to 220  = 20 
+--out of 1000 need to display apart from 201 to 220 = output = 980 
+
+--5.Between and not between
+--BETWEEN: This operator will you to display values or records between range you have specified 
+--NOT BETWEEN : This operator will you to display values or records by skkiping the rane mentioned or it will perform opposite operation of BETWEEN.
+
+--These opeartor will work with Logical operator 
+
+select * from employee where EMP_ID between 3 and 5
+
+select * from employee where EMP_ID not between 3 and 5
+
+select * from employee where EMP_NAME between 'a' and 'Mo'
+
+--6.LIKE 
+--LIKE operator will allow you to search pattern from given string or number 
+--LIKE operator used with WHERE clause 
+--LIKE is used most often with character and we can also use integer.
+
+--LIKE operator used with following wildcards for searching pattern
+--1. %	: It represents one or multiple charatcters 
+--2. '_': represents one or single character/ substitute exactly for one character.
+--3.[charlist]% : any single character from the lsit from starting
+--	%[charlist] : any single character from the lsit from ending
+--	%[charlist]% : any single character from the lsit from start and end.
+
+--4.[^charlist] or [!charlist] : anay single character not in list
+
+
+
+-- A% - it will display all the names which start with A
+-- %A - it will display all the names which end with A
+-- %A% - anaywhere inside the name.
+
+select * from employee where EMP_NAME like 'M%'
+select * from employee where EMP_NAME like '%M'
+select * from employee where EMP_NAME like '%M%'
+
+select * from employee where EMP_NAME like '%a%'
+
+select * from employee where EMP_NAME like '[M-S]%'
+
+--Display names which start with C,S,R
+select * from employee where EMP_NAME like '[CRS]%'
+--Display names which does not start with A,M,R
+select * from employee where EMP_NAME like '[!AMR]%'
+select * from employee where EMP_NAME like '[^AMR]%'
+
+select * from employee
+
+INSERT INTO employee values (9,'Amit,patil','Chandrapur',7500,'2021-10-01 10:30:00'),
+(10,'Suhas_patil','Jalna',7500,'2021-10-01 10:30:00')
+
+
+select * from employee where EMP_NAME like '%[,_]%'
+
+select * from employee where EMP_NAME like '%[_]%'
+
+select *,EMP_NAME  EMPLOYEENAME from employee
+
+--CLASS-4
+--2.Order by 
+--It is used to display the content of column either in ascending or dececnding order.
+--by default it will ASC always if you not mentioned anaything
+--for ascending (ASC) and for Descending (DESC)
+
+select * from employee order by Salary  -- by default it is ascending
+select * from employee order by Salary desc
+select * from employee order by EMP_NAME 
+
+--SQL aggregate 
+--1.AVG()
+--2.SUM()
+--3.MIN()
+--4.MAX()
+--5.Count()
+
+--1.AVG()
+--This function is used to find avarege value of particular column from table.
+
+select * from employee
+
+select AVG(Salary) as Avg_SAL from employee
+
+--2.sum()
+--it will add the values for particular column mentioned in sum function.
+
+select * from employee
+
+select sum(Salary) as Avg_SAL from employee
+
+--3.MIN()
+--This function find minimum value from column in a table.
+
+select min(Salary) as Avg_SAL from employee
+
+select min(EMP_NAME) as Avg_SAL from employee
+
+--4.MAX()
+--This function find Maximum  value from column in a table.
+
+select max(Salary) as Avg_SAL from employee
+
+select max(EMP_NAME) as Avg_SAL from employee
+
+--5.count()
+--This function returns number of rows from table or column in table.
+--Count function always accepts only one arugument.
+
+select COUNT(*) AS noofrecords from employee
+
+select COUNT(EMP_NAME) from employee
+
+select COUNT('sdfghjk') -- O/P = 1
+
+
+select COUNT('521345678909876543213456') + COUNT('7') --O/P = 2
+
+select COUNT('523456789') + COUNT('asdfghj') --O/P = 2
+
+select COUNT() --The COUNT function requires 1 argument(s).
+
+--Operand data type NULL is invalid for count operator.
+
+select COUNT(NULL) + COUNT(123) --Operand data type NULL is invalid for count operator.
+
+select COUNT(123) --O/P = 1
+
+select COUNT('123abncj') --O/P = 1
+
+select COUNT(CITY) from employee --it will not count null values 
+
+INSERT INTO employee values (11,'Suman',' ',8500,'2021-10-01 10:30:00')
+
+select COUNT(CITY) from employee --it will not count null values 
+
+select * from employee
+
+--TOP 
+--It will allow to select TOP records from table.
+--We can display interms of number sor percent.
+--When we have large numer of records in atble then we can use top keyword to display limited numer of records
+
+
+--synatx:
+--select top number / 50% percent *  from table 
+
+select top 50 PERCENT  * from employee
+
+select top 2   * from employee order by Salary desc
+
+--bottom 2 records in order
+select  * from employee where EMP_ID > (select COUNT(*) from employee) -4
+
+--second maximum salary 
+select Min(salary) as maxsal from employee --where IN (8500,7500,7500)
+where Salary in (select top 3 Salary  from employee order by Salary desc)
+
+
+--second minumum  salary 
+select Min(salary) as minsal from employee 
+where Salary in (select top 3 Salary  from employee order by Salary asc)
+
+select MAX(salary) from employee where Salary in 
+(select top 7 salary from employee order by Salary) 
+
+--class-5
+--distinct
+--It will allow you to find distinct or diffrent values from column.
+
+--synatx:
+--select distinct(column_name) from Table_Name
+
+select count(distinct(Salary)) from employee
+
+--How will avoid duplicate records from table?
+--How to find distinct values from table?
+
+--NULL values 
+--NULL is used to indicate absence of any data value.
+--results will be unknown
+--NULL = 0
+--NULL <> 0
+--NULL > 0
+--NULL = NULL
+
+--Null value in SQL treated as diffrent value and we need a specil function to validate NULL values in SQL.
+--NULL value is used as placeholder for unknown or inapplicable value in SQL.
+
+
+select * from employee where CITY = NULL
+
+--To test null values from table we have two SQL functions
+--1. IS NULL
+--2. IS NOT NULL
+
+select * from employee where CITY is NULL
+select * from employee where CITY is not NULL
+
+select * from employee where CITY is NULL and Salary is null
+select * from employee where CITY = ''
+
+--SQL Constraints 
+--1.Primary key
+--2.Foreign key
+--3.NOT NULL key
+--4.Unique key
+--5.Default key
+--6.check key
+
+--1.primary key(PK)
+-- NOT NULL + UNIQUE
+-- PK constraint uniquely identifies each record in database table.
+
+create table orders (OID int primary key ,Order_Name varchar(30),PIN int)
+
+--if you want check whether constraints are defined or structure of table on particular table then we can use 
+exec sp_help orders
+
+insert into orders values (1,'TV',411057)
+
+--Violation of PRIMARY KEY constraint 'PK__orders__CB394B391A2FA025'. 
+--Cannot insert duplicate key in object 'dbo.orders'. The duplicate key value is (1).
+
+insert into orders values (2,'TV',411057)
+insert into orders values ('','TV',411057)
+
+insert into orders values (NULL,'TV',411057)
+--Cannot insert the value NULL into column 'OID', table 'JOBHUNT.dbo.orders'; 
+--column does not allow nulls. INSERT fails.
+select * from orders
+
+--2.Foreign Key(FK)
+--FK can point from one table to PK of another table.
+--It will ensure that all the values in columns are diffrent
+--FK column will accept NULL values
+
+
+create table Department (DEPT_ID int primary key , DEPT_NAME varchar(50))
+
+insert into Department values (1,'Testing'),(2,'Dev'),(3,'DS'),(4,'ML')
+
+create table Student(S_ID int,S_Name varchar(20),City varchar(30),
+DID int foreign key references Department(DEPT_ID))
+
+--create table SPORTS_ACTIVITY(SP_ID,SPORT_NAME, DID FK)
+insert into Student values (1,'Praveen','PUNE',4),(2,'Manish','Mumbai',1)
+select * from Department
+select * from Student
+
+insert into Student values (3,'Praveen','PUNE',5)
+--The INSERT statement conflicted with the FOREIGN KEY constraint "FK__Student__DID__2B3F6F97". 
+--The conflict occurred in database "JOBHUNT", table "dbo.Department", column 'DEPT_ID'.
+
+insert into Student values (3,'Praveen','PUNE',NULL)
+
+insert into Student values (4,'Amit','Ranchi',NULL)
+
+insert into Student values (5,'Sumit','INDORE',4)
+
+insert into Student values (6,'Rohan','DELHI','')
+--The INSERT statement conflicted with the FOREIGN KEY constraint "FK__Student__DID__2B3F6F97". 
+--The conflict occurred in database "JOBHUNT", table "dbo.Department", column 'DEPT_ID'.
+
+--NOTE:
+--if FK point to particulr table column and which is not defined with PK then it will through below exception
+--Exception: There are no primary or candidate keys in the referenced table 'Department' that match 
+--the referencing column list in the foreign key 'FK__Student__DID__276EDEB3'.
+
+
+--CLASS-6
+--NOT NULL constraint restricts NULL value on particular column where we have defined NOT NULL constraint.
+
+
+create table NOT_NULL_TEST(NID int primary key , NAME varchar(20) NOT NULL, city varchar(20) NOT NULL)
+
+insert into NOT_NULL_TEST values (1,'','PUNE')
+
+insert into NOT_NULL_TEST (NID,NAME) values (1,'Praveen')
+--Cannot insert the value NULL into column 'city', table 'JOBHUNT.dbo.NOT_NULL_TEST'; 
+--column does not allow nulls. INSERT fails.
+
+select * from NOT_NULL_TEST
+
+insert into NOT_NULL_TEST values ('','','')
+
+insert into NOT_NULL_TEST values (NULL,NULL,NULL)
+--Cannot insert the value NULL into column 'city', table 'JOBHUNT.dbo.NOT_NULL_TEST'; 
+--column does not allow nulls. INSERT fails.
+
+
+--4.UNIQUE
+--UNIQUE constraint uniquely identifies each record in column.
+--One NULL Value inserted into unique constraint defined column.
+
+
+create table unique_test(UID int primary key , UID_NAME varchar(50) unique , city varchar(50) NOT NULL)
+
+insert into unique_test values (1,'amit','INDORE')
+insert into unique_test values (2,'','PUNE')
+insert into unique_test values ('','','')
+--Violation of UNIQUE KEY constraint 'UQ__unique_t__83C6AFCE7E148F54'. 
+--Cannot insert duplicate key in object 'dbo.unique_test'. The duplicate key value is ().
+
+insert into unique_test values (4,NULL,'')
+--Violation of UNIQUE KEY constraint 'UQ__unique_t__83C6AFCE7E148F54'. 
+--Cannot insert duplicate key in object 'dbo.unique_test'. The duplicate key value is (<NULL>).
+
+insert into unique_test values (4,NULL,'')
+
+select * from unique_test
+
+--5.check 
+--Check constraint is used to restrict or limit the value on particular column.
+
+Create table GAME_APP(GID int primary key,
+GAMENAME varchar(50) unique NOT NULL check (GAMENAME != '\s'), -- PUBG
+Age int check(age >=18))
+
+
+insert into GAME_APP values (1,'WAR ROOM', 17)
+
+--The INSERT statement conflicted with the CHECK constraint "CK__GAME_APP__GAMENA__36B12243". 
+--The conflict occurred in database "JOBHUNT", table "dbo.GAME_APP", column 'GAMENAME'.
+
+insert into GAME_APP values (1,'WARROOM', 17)
+
+--The INSERT statement conflicted with the CHECK constraint "CK__GAME_APP__Age__3C69FB99". 
+--The conflict occurred in database "JOBHUNT", table "dbo.GAME_APP", column 'Age'.
+
+insert into GAME_APP values (1,'WARROOM', 18)
+
+select * from GAME_APP
+
+--6.Default
+--DEFAULT Constraint is used to insert default value into column.
+--Whenever user forget to insert any record and that record has by default value then it will automatically insert by default value.
+
+Create table STUDY_CIRCLE(SID int primary key,
+TOPICNAME varchar(50) unique NOT NULL check (TOPICNAME != '\s'), -- PUBG
+Age int check(age >=10) default 10 ,
+CITY varchar(50) default 'PUNE',
+PIN int default 411057)
+
+insert into STUDY_CIRCLE values (1,'VEDICMATH',9,'INDORE',567890)
+--The INSERT statement conflicted with the CHECK constraint "CK__STUDY_CIRCL__Age__412EB0B6". 
+--The conflict occurred in database "JOBHUNT", table "dbo.STUDY_CIRCLE", column 'Age'.
+
+insert into STUDY_CIRCLE values (1,'VEDICMATH',10,'INDORE',567890)
+--Method-I
+insert into STUDY_CIRCLE values (2,'BASICMATH',Default,Default,Default)
+
+select * from STUDY_CIRCLE
+
+--METHOD-II
+insert into STUDY_CIRCLE (SID,TOPICNAME) values (3,'ENGLISH')
+
+
+Create table STUDY_CIRCLE1(SID int primary key, --unique + NOT NULL 
+TOPICNAME varchar(50) unique not null) --=PK 
+
+--AUTO-INCRREMENT
+--It is used to create unique values inside column where we define auto increment.
+--While creating an unique values we need provide the diffrence in uniqueness.
+
+--synatx: Column_Name datatype IDENTITY(Start,Diffrence of next value)
+
+
+Create table SOFTWARE_CIRCLE(SID int identity,
+COURSENAME varchar(50) unique NOT NULL check (COURSENAME != '\s'), 
+CITY varchar(50) default 'PUNE',
+PIN int default 411057)
+
+insert into SOFTWARE_CIRCLE values (1,'Testing','INDORE',567890)
+--An explicit value for the identity column in table 'SOFTWARE_CIRCLE' can only be specified 
+--when a column list is used and IDENTITY_INSERT is ON.
+
+insert into SOFTWARE_CIRCLE values ('Testing','INDORE',567890)
+
+select * from SOFTWARE_CIRCLE
+
+insert into SOFTWARE_CIRCLE values ('DS','DELHI',111001)
+
+
+
+Create table BANK_ACCOUNT(ACCOUNT_NUMBER int identity(1111788510,1),
+BANK_NAME varchar(50) unique NOT NULL, 
+CITY varchar(50) default 'MUMBAI',
+PIN int default 400001)
+
+ExEC SP_HELP BANK_ACCOUNT
+
+select * from BANK_ACCOUNT
+
+insert into BANK_ACCOUNT values ('BOI','PUNE',411027)
+
+--CLASS-7
+
+select * from BANK_ACCOUNT
+
+insert into BANK_ACCOUNT values ('SBI','PUNE',411057)
+
+insert into BANK_ACCOUNT values (1111788511,'HDFC',Default,400001)
+
+--Inorder to insert missing value into identity defined table column we need to set identity_insert on
+SET IDENTITY_INSERT BANK_ACCOUNT ON
+insert into BANK_ACCOUNT (ACCOUNT_NUMBER,BANK_NAME,CITY,PIN)values (1111788511,'HDFC',Default,400001)
+
+--3.GROUP BY
+--GROUP BY Clause is used to group the results which have same values.
+--Group By is used along with aggregate functions to group by result set by one or more values.
+
+--synatx:
+--select <col1>,<col2>,....<coln>,aggregate_function 
+--From Table_Name
+--Where col_name = Condition
+--GROUP BY <col1>,<col2>,....<coln>
+
+select * from employee
+
+create table emp(eid int identity,EMP_NAME varchar(30),Salary int, DEPT varchar(20))
+
+insert into emp values ('Praveen',3000,'TESTING'),('Amit',4000,'DS'),('Sumit',3500,'TESTING'),
+('Vinit',3800,'ML'),('Rohan',6000,'AI'),('Kisan',4500,'TESTING'),
+('Kiran',7600,'DS'),('Naman',7800,'ML'),('Jay',9000,'AI'),
+('Varun',8000,'ML')
+
+select * from emp
+
+--count number of employees in dept
+select DEPT,COUNT(*) as EMPCOUNT from emp
+group by DEPT
+
+--sumof salary deptwise
+select DEPT,SUM(Salary) DEPTWISESALARY from emp
+group by DEPT
+
+--emp and dept wise minimumn salary
+select DEPT,MIN(Salary) from emp 
+group by DEPT
+
+select distinct(DEPT)  from emp
+
+select DEPT,COUNT(*) from emp
+group by DEPT
+
+select DEPT,MIN(Salary) from emp
+group by DEPT
+
+select DEPT,max(Salary) from emp
+group by DEPT
+
+select DEPT,AVG(Salary) from emp
+group by DEPT
+
+
+select DEPT,COUNT(*) from emp
+where count(DEPT) >2 --can not used along with aggregate function.
+group by DEPT
+--error :An aggregate may not appear in the WHERE clause unless it is in a subquery contained in a HAVING clause 
+--or a select list, and the column being aggregated is an outer reference.
+
+--4.HAVING Clause
+--Having Clause is added in SQL because we can not use WHERE clause along with aggregate functions.
+
+--synatx:
+--select <col1>,<col2>,....<coln>,aggregate_function 
+--From Table_Name
+--Where col_name = Condition
+--GROUP BY <col1>,<col2>,....<coln>
+--HAVING Aggreagte_Function(column_name) opeartor Value/ condition.
+
+--Diffrence between WHERE clause and Having Clause?
+select DEPT,COUNT(*) as CountOfEMP from emp
+group by DEPT
+having COUNT(*) > 2
+
+--List out department whose sum of salary is greater than 15000
+select DEPT,SUM(Salary) as SUMOFSAL from emp
+group by DEPT
+having SUM(Salary) > 15000
+
+--Find duplicate records are present in a table 
+--Duplicate records are those records which is exactly same as existing records in table.
+
+create table emp1(eid int,EMP_NAME varchar(30),Salary int, DEPT varchar(20))
+
+insert into emp1 values (1,'Praveen',3000,'TESTING'),(2,'Amit',4000,'DS'),(3,'Sumit',3500,'TESTING'),
+(4,'Vinit',3800,'ML'),(5,'Rohan',6000,'AI')
+
+select * from emp1
+
+--methods to identify distinct records 
+select distinct eid,EMP_NAME,Salary,DEPT  from emp1
+
+select eid,EMP_NAME,Salary,DEPT  from emp1
+group by eid,EMP_NAME,Salary,DEPT
+
+--identifying duplicate records present in table
+select eid,EMP_NAME,Salary,DEPT,COUNT(*) as Duplicate  from emp1
+group by eid,EMP_NAME,Salary,DEPT
+having COUNT(*) >1
+
+--SQL Statements 
+--1.DML(Data Manipulation Language) - S_UID
+--SELECT ,UPDATE, INSERT DELETE
+
+--2.DDL (Data Defination Language) --DR.CAT
+--DROP,RENAME,CREATE,ALTER,TRUNCATE
+
+--3.DCL (Data Control Language)
+--GRANT,REVOKE 
+
+--4.TCL(Transaction Control Language)
+-- COMMIT,ROLLBACK, TRAN, COMMITTRAN
+
+
+--CLASS-8
+--1.DML(Data Manipulation Language) - S_UID
+--SELECT ,UPDATE, INSERT DELETE
+--DML operation are used to play with table data stored inside the table.
+
+--SELECT 
+--This tatement is used to select all the records from table
+--By using select we can select any string or value or any sql functions
+
+select 88888
+
+select * from employee
+
+select 5678 from employee
+
+select COUNT(12345)
+
+--UPDATE 
+--UPDATE statement is used to update existing records from tbale.
+--While updating column if you have not specified condtion then it will modify/update the complete column.
+
+--synatx:
+--UPDATE Table_Name SET ColUmn_Name = 'Value' where column_Name = Condition
+
+select * from employee
+
+UPDATE employee SET CITY = 'DELHI' where EMP_ID =3
+
+UPDATE employee SET Salary = 5200 where Salary is null
+
+UPDATE employee SET CITY = 'KOTA' where CITY is null OR CITY = ''
+
+UPDATE employee SET CITY = 'KOTA', EMP_NAME = 'MANISH' where EMP_ID =10
+
+select * from Student
+
+UPDATE Student set DID =2 
+
+--INSERT 
+--This statement is used to insert the value into table 
+
+--Synatx:
+--INSERT INTO TABLE_NAME VALUES (Col1,col2,.....coln)
+--or
+--INSERT INTO TABLE_NAME (Col1,col2,.....coln) VALUES (Col1,col2,.....coln)
+
+--DELETE 
+--THIS statement is used to delete table data based on condition.
+--If we have not mentioned condition then it will delete complete data.
+--DELETE operation will be perfomed on ROW-BY-ROW basis.
+
+
+--Synatx:
+--DELETE FROM TABLE_NAME WHERE Column_NAME = CONDITION
+
+
+select * from emp1
+
+delete from emp1 --it will delete all the records 
+
+select * from employee
+
+delete from employee where EMP_ID =11 
+
+--2.DDL (Data Defination Language) --DR.CAT
+--DROP,RENAME,CREATE,ALTER,TRUNCATE
+--DDL stamenets are basically used to play with table structure 
+--DDL statement used along with TABLE Keyword 
+
+exec sp_help employee
+
+--DROP 
+--DROP statement is used to DELETE table struture as well table data.
+--DROP stement is used to delete complete user defined database 
+
+--synatx:
+--DROP TABLE TBALE_NAME 
+
+--DROP DATABASE database_Name 
+
+--drop table 
+
+select * from SOFTWARE_CIRCLE
+
+DROP table SOFTWARE_CIRCLE 
+
+drop table employee
+CREATE DATABASE TEST
+
+--DROP DATABASE 
+DROP DATABASE Test
+
+--Diffrence between DELETE and DROP  
+
+--TRUNCATE 
+--TRUNCATE Statement will allow you to DELETE complete table data at once.
+--IT will not allow you to provide condition
+
+--syantx:
+--truncate table TABLE_NAME
+
+select * from BANK_ACCOUNT
+
+DELETE FROM BANK_ACCOUNT --it is slow compared to truncate because it will delete ROW-BY-ROW 
+
+Truncate  Table BANK_ACCOUNT --IT is fast because it will delete complete records within fraction of time
+
+--Diffrence between DELETE ,DROP and Truncate
+
+--CLASS-9
+--ALTER
+
+Select * from INFORMATION_SCHEMA.TABLES 
